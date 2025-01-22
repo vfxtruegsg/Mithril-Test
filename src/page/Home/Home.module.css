@@ -1,0 +1,49 @@
+.container {
+  width: 360px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout {
+  background-color: #e6e6e6;
+  display: block;
+  color: #000;
+  font-weight: 700;
+  padding: 10px 20px;
+  width: 120px;
+  text-align: center;
+  border-radius: 12px;
+  border: 1px solid transparent;
+
+  transition: all 200ms ease-in-out;
+}
+
+.logout:hover,
+.logout:focus {
+  border-color: #60bfff;
+}
+
+.greetings {
+  text-align: center;
+}
+
+.navigation {
+  margin-bottom: 48px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
