@@ -1,0 +1,34 @@
+.error {
+  display: grid;
+  place-items: center;
+  gap: 24px;
+  height: 100vh;
+}
+
+.error-msg {
+  text-align: center;
+  text-transform: uppercase;
+  max-width: 360px;
+}
+
+.weather-img {
+  width: 150px;
+  height: 150px;
+}
+
+@media screen and (min-width: 768px) {
+  .weather-img {
+    width: 175px;
+    height: 175px;
+  }
+  .error-msg {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .weather-img {
+    width: 200px;
+    height: 200px;
+  }
+}

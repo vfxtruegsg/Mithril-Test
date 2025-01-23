@@ -18,7 +18,7 @@ const Authorization = () => {
         id: nanoid(),
       })
     );
-    navigate("/home");
+    navigate("/");
     form.reset();
   };
 
