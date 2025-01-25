@@ -3,6 +3,13 @@
   padding: 0 16px;
   margin: 0 auto;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  justify-content: center;
+  margin-top: 24px;
+}
 
 .navigation {
   display: flex;
@@ -19,6 +26,7 @@
   text-align: center;
   border-radius: 12px;
   border: 1px solid transparent;
+  margin: 0 auto;
 
   transition: all 200ms ease-in-out;
 }
@@ -26,10 +34,12 @@
 .logout:hover,
 .logout:focus {
   border-color: #60bfff;
+  background-color: transparent;
 }
 
 .greetings {
   text-align: center;
+  margin-bottom: 64px;
 }
 
 .navigation {
@@ -39,6 +49,9 @@
 @media screen and (min-width: 768px) {
   .container {
     width: 768px;
+  }
+  .logo {
+    gap: 64px;
   }
 }
 

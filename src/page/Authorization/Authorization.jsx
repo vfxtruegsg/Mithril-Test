@@ -2,11 +2,17 @@ import { useDispatch } from "react-redux";
 import css from "./Authorization.module.css";
 import { logInOut } from "../../redux/userSlice/userSlice";
 import { nanoid } from "@reduxjs/toolkit";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-const Authorization = () => {
+const Authorization = ({ setIsAuth }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    const authStatus = localStorage.getItem("isAuthenticated");
+    if (authStatus) {
+      setIsAuth(JSON.parse(authStatus));
+    }
+  }, [setIsAuth]);
 
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -18,7 +24,8 @@ const Authorization = () => {
         id: nanoid(),
       })
     );
-    navigate("/");
+    setIsAuth(true);
+    localStorage.setItem("isAuthenticated", true);
     form.reset();
   };
 

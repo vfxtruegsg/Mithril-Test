@@ -1,13 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import css from "./App.module.css";
 import Authorization from "./page/Authorization/Authorization";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { MutatingDots } from "react-loader-spinner";
 import NotFound from "./page/NotFound/NotFound";
 
 const Home = lazy(() => import("./page/Home/Home"));
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
+
   return (
     <div style={{ position: "relative" }}>
       <Suspense
@@ -23,8 +25,16 @@ function App() {
         }
       >
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/authorization" element={<Authorization />} />
+          <Route
+            path="/"
+            element={
+              isAuth ? (
+                <Home setIsAuth={setIsAuth} />
+              ) : (
+                <Authorization setIsAuth={setIsAuth} />
+              )
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
