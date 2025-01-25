@@ -29,7 +29,7 @@ const Home = ({ setIsAuth }) => {
       <div className={css.logo}>
         <h1>Weather App</h1>
         <img
-          src="/src/image/free-icon-climate-change-5545553.png"
+          src="../../image/free-icon-climate-change-5545553.png"
           alt="Weather Logo"
           width="64"
           height="64"
@@ -59,7 +59,7 @@ const Home = ({ setIsAuth }) => {
           <h2 style={{ textAlign: "center" }}>
             Something went wrong... Please, try again later!
           </h2>
-          <img src="/src/image/error.png" alt="Error image" />
+          <img src="../../image/error.png" alt="Error image" />
         </div>
       )}
 

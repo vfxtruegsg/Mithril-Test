@@ -34,7 +34,7 @@ const Authorization = ({ setIsAuth }) => {
       <div className={css["title-container"]}>
         <h1>Weather</h1>
         <img
-          src="/src/image/free-icon-climate-change-5545553.png"
+          src="../../image/free-icon-climate-change-5545553.png"
           alt="Logo Weather"
           className={css["logo-img"]}
         />
