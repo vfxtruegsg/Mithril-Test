@@ -29,15 +29,16 @@ const Authorization = ({ setIsAuth }) => {
     form.reset();
   };
 
+  const logoIcon = new URL(
+    "/src/image/free-icon-climate-change-5545553.png",
+    import.meta.url
+  );
+
   return (
     <div className={css.container}>
       <div className={css["title-container"]}>
         <h1>Weather</h1>
-        <img
-          src="../../image/free-icon-climate-change-5545553.png"
-          alt="Logo Weather"
-          className={css["logo-img"]}
-        />
+        <img src={logoIcon} alt="Logo Weather" className={css["logo-img"]} />
       </div>
 
       <form className={css.form} onSubmit={handleLogIn}>
