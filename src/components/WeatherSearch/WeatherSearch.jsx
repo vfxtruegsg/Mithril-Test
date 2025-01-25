@@ -16,13 +16,12 @@ const WeatherSearch = () => {
   return (
     <div>
       <form className={css.form} onSubmit={handleSearch}>
-        <label htmlFor="city">Weather search by city name</label>
         <input
           className={css.fields}
           id="city"
           type="text"
           name="city"
-          placeholder="Enter City..."
+          placeholder="Enter city to search weather..."
         />
 
         <button className={css["sub-btn"]} type="submit">
