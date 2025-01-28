@@ -1,6 +1,9 @@
 import css from "./WeatherSearch.module.css";
 import { useDispatch } from "react-redux";
-import { getTodayWeather } from "../../redux/weatherSlice/weatherOperations";
+import {
+  getTodayWeather,
+  getHourlyWeather,
+} from "../../redux/weatherSlice/weatherOperations";
 
 const WeatherSearch = () => {
   const dispatch = useDispatch();
@@ -10,6 +13,7 @@ const WeatherSearch = () => {
     const form = e.target;
     const cityName = form.elements.city.value;
     dispatch(getTodayWeather(cityName));
+    dispatch(getHourlyWeather(cityName));
     form.reset();
   };
 

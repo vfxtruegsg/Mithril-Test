@@ -11,6 +11,23 @@ export const getTodayWeather = createAsyncThunk(
       const { data } = await axios.get(
         `/weather?q=${cityName}&appid=${API_KEY}`
       );
+
+      return [data];
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getHourlyWeather = createAsyncThunk(
+  "weather/getHourlyWeather",
+  async (cityName, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/forecast?q=${cityName}&appid=${API_KEY}&units=metric`
+      );
+      console.log(data);
+
       return [data];
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -5,6 +5,7 @@ import { selectName } from "../../redux/userSlice/userSlice";
 import { logInOut } from "../../redux/userSlice/userSlice";
 import WeatherSearch from "../../components/WeatherSearch/WeatherSearch";
 import {
+  selectDaraHourlyWeather,
   selectData,
   selectisError,
   selectIsLoading,
@@ -17,6 +18,7 @@ const Home = ({ setIsAuth }) => {
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectisError);
   const data = useSelector(selectData);
+  const dataHourlyWeather = useSelector(selectDaraHourlyWeather);
 
   const dispatch = useDispatch();
   const handleLogOut = () => {
@@ -65,7 +67,9 @@ const Home = ({ setIsAuth }) => {
         </div>
       )}
 
-      {data && <WeatherCard data={data} />}
+      {data && dataHourlyWeather && (
+        <WeatherCard data={data} dataHourlyWeather={dataHourlyWeather} />
+      )}
 
       <button onClick={handleLogOut} className={css.logout}>
         Log Out
