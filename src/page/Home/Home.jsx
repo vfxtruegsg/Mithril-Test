@@ -11,7 +11,8 @@ import {
   selectIsLoading,
 } from "../../redux/weatherSlice/weatherSlice";
 import { TailSpin } from "react-loader-spinner";
-import WeatherCard from "../../components/WeatherCard/WeatherCard";
+import { NavLink, Outlet } from "react-router-dom";
+import { clsx } from "clsx";
 
 const Home = ({ setIsAuth }) => {
   const username = useSelector(selectName);
@@ -33,17 +34,30 @@ const Home = ({ setIsAuth }) => {
   );
   const errorIcon = new URL("/src/image/error.png", import.meta.url);
 
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(css.link, isActive && css.active);
+  };
+
   return (
     <div className={css.container}>
       <div className={css.logo}>
         <h1>Weather App</h1>
         <img src={logoIcon} alt="Weather Logo" width="64" height="64" />
       </div>
-      <nav className={css.navigation}></nav>
 
       <h2 className={css.greetings}>Welcome, {username || "User"}!</h2>
 
       <WeatherSearch />
+
+      <nav className={css.navigation}>
+        {" "}
+        <NavLink to="weather" className={buildLinkClass}>
+          Weather
+        </NavLink>
+        <NavLink to="selected" className={buildLinkClass}>
+          Selected Weather
+        </NavLink>
+      </nav>
 
       {isLoading && (
         <div
@@ -67,9 +81,7 @@ const Home = ({ setIsAuth }) => {
         </div>
       )}
 
-      {data && dataHourlyWeather && (
-        <WeatherCard data={data} dataHourlyWeather={dataHourlyWeather} />
-      )}
+      {data && dataHourlyWeather && <Outlet />}
 
       <button onClick={handleLogOut} className={css.logout}>
         Log Out

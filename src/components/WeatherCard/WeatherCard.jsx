@@ -1,4 +1,5 @@
 import css from "./WeatherCard.module.css";
+import { FaStar } from "react-icons/fa";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -10,6 +11,12 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectSelectedWeather,
+  selectWeather,
+} from "../../redux/weatherSlice/weatherSlice";
+import toast from "react-hot-toast";
 
 ChartJS.register(
   LineElement,
@@ -22,9 +29,30 @@ ChartJS.register(
 );
 
 const WeatherCard = ({ data, dataHourlyWeather }) => {
-  if (!dataHourlyWeather || dataHourlyWeather.length === 0) {
-    return <p>No data for graph</p>;
-  }
+  const dispatch = useDispatch();
+  const selectBtn = document.getElementById("select-icon");
+
+  const dataSelectedWeather = useSelector(selectSelectedWeather);
+
+  const handleSelectWeather = (data) => {
+    // console.log(data);
+    // console.log(dataSelectedWeather);
+
+    // const isAlreadyAdded =
+    //   dataSelectedWeather.length > 0 &&
+    //   data.some((item, index) => item[0].id === dataSelectedWeather[index]?.id);
+
+    // console.log(isAlreadyAdded);
+
+    // if (isAlreadyAdded) {
+    //   toast.error("Already in selected");
+    //   return;
+    // }
+
+    dispatch(selectWeather(...data));
+
+    toast.success("Added to saved queries");
+  };
 
   const labels = dataHourlyWeather.map((item, index) =>
     item.list[index].dt_txt.slice(11, 16)
@@ -71,22 +99,31 @@ const WeatherCard = ({ data, dataHourlyWeather }) => {
       <ul>
         {data.map((item, index) => (
           <li className={css.card} key={index}>
-            <h3>
-              City: {item.name} | Country: {item.sys.country}
-            </h3>
-            <p>
-              Weather condition:{" "}
-              {item?.weather?.[0]?.main || "No weather information"}
-            </p>
-            <p>
-              Current temperature {(item.main.temp - 273).toFixed(1)} &deg;C
-            </p>
-            <p>
-              Max temperature {(item.main.temp_max - 273).toFixed(1)} &deg;C
-            </p>
-            <p>
-              Min temperature {(item.main.temp_min - 273).toFixed(1)} &deg;C
-            </p>
+            <button
+              id="select-icon"
+              className={css["select-btn"]}
+              onClick={() => handleSelectWeather(data)}
+            >
+              <FaStar className={css["select-btn-icon"]} />
+            </button>
+            <div className={css["temp-inf"]}>
+              <h3>
+                City: {item.name} | Country: {item.sys.country}
+              </h3>
+              <p>
+                Weather condition:{" "}
+                {item?.weather?.[0]?.main || "No weather information"}
+              </p>
+              <p>
+                Current temperature {(item.main.temp - 273).toFixed(1)} &deg;C
+              </p>
+              <p>
+                Max temperature {(item.main.temp_max - 273).toFixed(1)} &deg;C
+              </p>
+              <p>
+                Min temperature {(item.main.temp_min - 273).toFixed(1)} &deg;C
+              </p>
+            </div>
 
             <div>
               <h4 style={{ textAlign: "center" }}>Hourly forecast:</h4>

@@ -1,14 +1,44 @@
 .card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
   margin-bottom: 48px;
-  gap: 12px;
+  gap: 24px;
 
   width: 100%;
   max-width: 380px;
-  padding: 24px 12px;
+  padding: 36px 16px;
   background-color: #e6e6e6;
   border-radius: 12px;
+}
+
+.select-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  outline: none;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.select-btn-icon {
+  width: 24px;
+  height: 24px;
+  transition: fill 200ms ease-in-out;
+}
+
+.select-btn:hover .select-btn-icon {
+  fill: #ffae00;
+}
+
+.temp-inf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }

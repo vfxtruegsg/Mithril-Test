@@ -26,7 +26,6 @@ export const getHourlyWeather = createAsyncThunk(
       const { data } = await axios.get(
         `/forecast?q=${cityName}&appid=${API_KEY}&units=metric`
       );
-      console.log(data);
 
       return [data];
     } catch (error) {

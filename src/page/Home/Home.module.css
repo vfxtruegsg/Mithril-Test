@@ -9,11 +9,29 @@
   gap: 48px;
   justify-content: center;
   margin-top: 24px;
+  margin-bottom: 48px;
 }
 
 .navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 36px;
+}
+
+.link {
+  font-size: 24px;
+  color: #ffb1c2;
+
+  transition: all 200ms ease-in-out;
+}
+
+.link:hover {
+  color: #ff2454;
+}
+
+.active {
+  text-decoration: underline;
+  color: #ff6384;
 }
 
 .logout {
@@ -27,6 +45,7 @@
   border-radius: 12px;
   border: 1px solid transparent;
   margin: 0 auto;
+  margin-bottom: 48px;
 
   transition: all 200ms ease-in-out;
 }

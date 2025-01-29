@@ -1,0 +1,37 @@
+.selected-weather-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  margin-bottom: 48px;
+}
+
+.selected-weather-container {
+  padding: 14px 8px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 360px;
+  background-color: #e6e6e6;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.del-btn {
+  outline: none;
+  padding: 4px 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  background-color: #fff;
+  color: #ff6384;
+
+  transition: all 200ms ease-in-out;
+}
+
+.del-btn:hover {
+  color: #ff2454;
+}

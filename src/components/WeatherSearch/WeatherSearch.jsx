@@ -4,9 +4,11 @@ import {
   getTodayWeather,
   getHourlyWeather,
 } from "../../redux/weatherSlice/weatherOperations";
+import { useNavigate } from "react-router-dom";
 
 const WeatherSearch = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ const WeatherSearch = () => {
     const cityName = form.elements.city.value;
     dispatch(getTodayWeather(cityName));
     dispatch(getHourlyWeather(cityName));
+    navigate("weather");
     form.reset();
   };
 
