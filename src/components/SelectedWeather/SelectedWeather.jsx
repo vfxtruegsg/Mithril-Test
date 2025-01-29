@@ -14,32 +14,36 @@ const SelectedWeather = () => {
   return (
     <div>
       <ul className={css["selected-weather-list"]}>
-        {dataSelectedWeather.map((item, index) => (
-          <li className={css["selected-weather-container"]} key={index}>
-            <h3>
-              City: {item.name} | Country: {item.sys.country}
-            </h3>
-            <p>
-              Weather condition:{" "}
-              {item?.weather?.[0]?.main || "No weather information"}
-            </p>
-            <p>
-              Current temperature {(item.main.temp - 273).toFixed(1)} &deg;C
-            </p>
-            <p>
-              Max temperature {(item.main.temp_max - 273).toFixed(1)} &deg;C
-            </p>
-            <p>
-              Min temperature {(item.main.temp_min - 273).toFixed(1)} &deg;C
-            </p>
-            <button
-              onClick={() => handleDelete(dataSelectedWeather[index].id)}
-              className={css["del-btn"]}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+        {dataSelectedWeather.length > 0 ? (
+          dataSelectedWeather.map((item, index) => (
+            <li className={css["selected-weather-container"]} key={index}>
+              <h3>
+                City: {item.name} | Country: {item.sys.country}
+              </h3>
+              <p>
+                Weather condition:{" "}
+                {item?.weather?.[0]?.main || "No weather information"}
+              </p>
+              <p>
+                Current temperature {(item.main.temp - 273).toFixed(1)} &deg;C
+              </p>
+              <p>
+                Max temperature {(item.main.temp_max - 273).toFixed(1)} &deg;C
+              </p>
+              <p>
+                Min temperature {(item.main.temp_min - 273).toFixed(1)} &deg;C
+              </p>
+              <button
+                onClick={() => handleDelete(dataSelectedWeather[index].id)}
+                className={css["del-btn"]}
+              >
+                Delete
+              </button>
+            </li>
+          ))
+        ) : (
+          <h4 style={{ textAlign: "center" }}>No information yet</h4>
+        )}
       </ul>
     </div>
   );
