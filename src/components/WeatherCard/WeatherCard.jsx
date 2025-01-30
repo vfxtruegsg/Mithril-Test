@@ -47,11 +47,11 @@ const WeatherCard = ({ data, dataHourlyWeather }) => {
     toast.success("Added to saved queries");
   };
 
-  const labels = dataHourlyWeather[0].list
+  const labels = dataHourlyWeather[0]?.list
     .slice(0, 6)
     .map((item) => item.dt_txt.slice(11, 16));
 
-  const temperatures = dataHourlyWeather[0].list
+  const temperatures = dataHourlyWeather[0]?.list
     .slice(0, 6)
     .map((item) => item.main.temp);
 
