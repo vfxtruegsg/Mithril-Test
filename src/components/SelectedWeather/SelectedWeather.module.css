@@ -4,6 +4,8 @@
   align-items: center;
   gap: 24px;
 
+  position: relative;
+
   margin-bottom: 48px;
 }
 

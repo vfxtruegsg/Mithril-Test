@@ -30,36 +30,30 @@ ChartJS.register(
 
 const WeatherCard = ({ data, dataHourlyWeather }) => {
   const dispatch = useDispatch();
-  const selectBtn = document.getElementById("select-icon");
 
   const dataSelectedWeather = useSelector(selectSelectedWeather);
 
   const handleSelectWeather = (data) => {
-    // console.log(data);
-    // console.log(dataSelectedWeather);
+    const isAlreadyAdded =
+      dataSelectedWeather.length > 0 &&
+      dataSelectedWeather.some((item) => item.id == data[0].id);
 
-    // const isAlreadyAdded =
-    //   dataSelectedWeather.length > 0 &&
-    //   data.some((item, index) => item[0].id === dataSelectedWeather[index]?.id);
-
-    // console.log(isAlreadyAdded);
-
-    // if (isAlreadyAdded) {
-    //   toast.error("Already in selected");
-    //   return;
-    // }
+    if (isAlreadyAdded) {
+      toast.error("Already in selected");
+      return;
+    }
 
     dispatch(selectWeather(...data));
-
     toast.success("Added to saved queries");
   };
 
-  const labels = dataHourlyWeather.map((item, index) =>
-    item.list[index].dt_txt.slice(11, 16)
-  );
-  const temperatures = dataHourlyWeather.map(
-    (item, index) => item.list[index].main.temp
-  );
+  const labels = dataHourlyWeather[0].list
+    .slice(0, 6)
+    .map((item) => item.dt_txt.slice(11, 16));
+
+  const temperatures = dataHourlyWeather[0].list
+    .slice(0, 6)
+    .map((item) => item.main.temp);
 
   const chartData = {
     labels,
@@ -100,7 +94,6 @@ const WeatherCard = ({ data, dataHourlyWeather }) => {
         {data.map((item, index) => (
           <li className={css.card} key={index}>
             <button
-              id="select-icon"
               className={css["select-btn"]}
               onClick={() => handleSelectWeather(data)}
             >

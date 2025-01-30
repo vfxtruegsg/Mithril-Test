@@ -49,15 +49,17 @@ const Home = ({ setIsAuth }) => {
 
       <WeatherSearch />
 
-      <nav className={css.navigation}>
-        {" "}
-        <NavLink to="weather" className={buildLinkClass}>
-          Weather
-        </NavLink>
-        <NavLink to="selected" className={buildLinkClass}>
-          Selected Weather
-        </NavLink>
-      </nav>
+      {data && (
+        <nav className={css.navigation}>
+          {" "}
+          <NavLink to="weather" className={buildLinkClass}>
+            Weather
+          </NavLink>
+          <NavLink to="selected" className={buildLinkClass}>
+            Selected Weather
+          </NavLink>
+        </nav>
+      )}
 
       {isLoading && (
         <div

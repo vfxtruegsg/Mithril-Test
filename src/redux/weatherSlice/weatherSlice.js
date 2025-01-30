@@ -1,9 +1,14 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getTodayWeather, getHourlyWeather } from "./weatherOperations";
+import {
+  getTodayWeather,
+  getHourlyWeather,
+  getNightWeather,
+} from "./weatherOperations";
 
 const initialState = {
   data: [],
   dataHourlyWeather: [],
+  dataNightWeather: [],
   selectedWeather: [],
   isLoading: false,
   isError: false,
@@ -45,8 +50,18 @@ const weatherSlice = createSlice({
         state.dataHourlyWeather = action.payload;
       })
 
+      .addCase(getNightWeather.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.dataNightWeather = action.payload;
+      })
+
       .addMatcher(
-        isAnyOf(getTodayWeather.pending, getHourlyWeather.pending),
+        isAnyOf(
+          getTodayWeather.pending,
+          getHourlyWeather.pending,
+          getNightWeather.pending
+        ),
         (state) => {
           state.isLoading = true;
           state.isError = false;
@@ -54,7 +69,11 @@ const weatherSlice = createSlice({
       )
 
       .addMatcher(
-        isAnyOf(getTodayWeather.rejected, getHourlyWeather.rejected),
+        isAnyOf(
+          getTodayWeather.rejected,
+          getHourlyWeather.rejected,
+          getNightWeather.rejected
+        ),
         (state) => {
           state.isLoading = false;
           state.isError = true;

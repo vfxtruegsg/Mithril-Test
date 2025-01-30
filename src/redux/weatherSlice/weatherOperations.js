@@ -33,3 +33,18 @@ export const getHourlyWeather = createAsyncThunk(
     }
   }
 );
+
+export const getNightWeather = createAsyncThunk(
+  "weather/getNightWeather",
+  async (cityName, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/forecast?q=${cityName}&appid=${API_KEY}&units=metric&lang=ru`
+      );
+
+      return [data];
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
